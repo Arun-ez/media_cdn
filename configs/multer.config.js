@@ -12,7 +12,7 @@ const parse_filename = (file) => {
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
-        cb(null, 'static/storage/')
+        cb(null, './static/storage/')
     },
 
     filename: (req, file, cb) => {
