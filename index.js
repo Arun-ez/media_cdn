@@ -4,22 +4,16 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import uploader from './configs/multer.config.js';
 import authorizer from './middlewares/authorizer.js';
-import { __dirname } from './dir.js';
 
 
 /* Server Configurations */
 const server = express();
+server.use(express.static('static'))
 server.use(cors());
 dotenv.config();
 
 
 /* Route Handlers */
-server.get('/storage/files/:id', (request, response) => {
-
-    const { id } = request.params;
-
-    response.sendFile(path.join(__dirname, 'storage', id));
-})
 
 server.post('/upload', authorizer, uploader.array('files'), (request, response) => {
 
